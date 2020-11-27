@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\ScopePerson;
 
 class person extends Model
 {
@@ -22,5 +23,11 @@ class person extends Model
     public function scopeAgeLessThan($query, $n)
     {
         return $query->where('age', '<=', $n);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ScopePerson);
     }
 }
