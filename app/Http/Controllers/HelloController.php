@@ -7,13 +7,18 @@ use App\Http\Requests\HelloRequest;
 use Illuminate\Http\Response;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use App\Person;
 
 class HelloController extends Controller
 {
     public function index(Request $request)
     {
+        $items = DB::table('people')->simplePaginate(5);
+        return view('hello.index', ['items' => $items]);
+        /*
        $items = DB::table('people')->orderBy('age', 'desc')->get();
        return view('hello.index', ['items' => $items]);
+       */
     }
 
     public function show(Request $request)
