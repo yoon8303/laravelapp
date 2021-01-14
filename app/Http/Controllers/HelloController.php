@@ -13,6 +13,7 @@ class HelloController extends Controller
 {
     public function index(Request $request)
     {
+     $user = Auth::user();
       if(!$request->sort) {
          $sort = 'id';
      } else {
@@ -20,8 +21,8 @@ class HelloController extends Controller
      }
      $items = Person::orderBy($sort, 'asc')
          ->paginate(5);
-      $param = ['items' => $items, 'sort' => $sort];
-      return view('hello.index', $param);
+     $param = ['items' => $items, 'sort' => $sort, 'user' => $user];
+     return view('hello.index', $param);
 
 
         /*
