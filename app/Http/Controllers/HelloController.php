@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use App\Person;
+use Illuminate\Support\Facades\Auth;
 
 class HelloController extends Controller
 {
